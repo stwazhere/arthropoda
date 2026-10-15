@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arthropoda</title>
+
+  <!-- Yazı tipleri (Google Fonts, internet gerekir) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+
+    <header class="baslik">
+      <h1>Arthropoda</h1>
+      <p>Gizli eklembacaklıyı bul. Her tahminde, tahminin ile hedefin <strong>en yakın ortak atasını</strong> göreceksin.</p>
+    </header>
+
+    <!-- Tahmin kutusu -->
+    <form id="tahmin-formu" autocomplete="off">
+      <input id="tahmin-girdisi" list="tur-listesi" placeholder="Latince veya Türkçe ad yaz…" aria-label="Tahmin">
+      <datalist id="tur-listesi"></datalist>
+      <button type="submit">Tahmin et</button>
+    </form>
+    <p id="mesaj" role="status"></p>
+
+    <!-- İpucu alanı -->
+    <section class="ipucu-alani">
+      <button id="ipucu-dugmesi" type="button" class="ikincil">İpucu al</button>
+      <button id="pes-dugmesi" type="button" class="ikincil">Pes et</button>
+      <ul id="ipuclari"></ul>
+    </section>
+
+    <!-- Tahminler -->
+    <ol id="tahminler"></ol>
+
+    <!-- Oyun bitince açılan tayin kartı -->
+    <section id="sonuc" hidden></section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

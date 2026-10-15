@@ -1,0 +1,178 @@
+/* ==========================================================
+   RENKLER VE YAZI TİPLERİ
+   Görünümü değiştirmek için önce buradaki değerlerle oyna.
+   ========================================================== */
+:root {
+  --zemin:   #102c3a;   /* sayfa arka planı: koyu orman yeşili */
+  --yuzey:   #194357;   /* kutuların rengi */
+  --cizgi:   #2f6279;   /* ince çizgiler */
+  --metin:   #eef5f7;   /* ana yazı: soluk liken rengi */
+  --soluk:   #a9cbda;   /* ikincil yazı */
+  --vurgu:   #d99aa3;   /* kehribar: önemli şeyler */
+  --dogru:   #b8b567;   /* doğru cevap */
+
+  --baslik-yazisi: "Fraunces", Georgia, serif;
+  --govde-yazisi:  "Instrument Sans", system-ui, sans-serif;
+
+  --yaricap: 10px;
+}
+
+/* ---------- Genel ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--zemin);
+  color: var(--metin);
+  font-family: var(--govde-yazisi);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 20px 96px;
+}
+
+/* ---------- Başlık ---------- */
+.baslik h1 {
+  margin: 0 0 12px;
+  font-family: var(--baslik-yazisi);
+  font-weight: 600;
+  font-size: clamp(48px, 10vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.baslik p {
+  margin: 0 0 36px;
+  max-width: 52ch;
+  color: var(--soluk);
+}
+.baslik strong { color: var(--metin); font-weight: 500; }
+
+/* ---------- Tahmin kutusu ---------- */
+#tahmin-formu {
+  display: flex;
+  gap: 10px;
+}
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  background: var(--yuzey);
+  color: var(--metin);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--yaricap);
+  font: inherit;
+}
+input::placeholder { color: var(--soluk); }
+
+button {
+  padding: 14px 22px;
+  background: var(--vurgu);
+  color: #1b1405;
+  border: 0;
+  border-radius: var(--yaricap);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.08); }
+
+button.ikincil {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--soluk);
+  border: 1px solid var(--cizgi);
+  font-weight: 500;
+}
+button.ikincil:hover { color: var(--metin); border-color: var(--soluk); filter: none; }
+
+/* Klavyeyle gezenler için görünür odak çizgisi */
+input:focus-visible, button:focus-visible {
+  outline: 2px solid var(--vurgu);
+  outline-offset: 2px;
+}
+
+#mesaj { min-height: 1.5em; margin: 10px 2px 0; color: var(--vurgu); font-size: 15px; }
+
+/* ---------- İpucu alanı ---------- */
+.ipucu-alani { margin-top: 20px; }
+.ipucu-alani button + button { margin-left: 8px; }
+
+#ipuclari { list-style: none; margin: 16px 0 0; padding: 0; }
+#ipuclari li {
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  background: var(--yuzey);
+  border-left: 3px solid var(--vurgu);
+  border-radius: 0 var(--yaricap) var(--yaricap) 0;
+}
+#ipuclari .tur { display: block; color: var(--vurgu); font-size: 14px; font-weight: 600; }
+
+/* ---------- Tahminler ---------- */
+#tahminler { list-style: none; margin: 32px 0 0; padding: 0; }
+
+.tahmin {
+  margin-bottom: 14px;
+  padding: 18px 20px;
+  background: var(--yuzey);
+  border: 1px solid var(--cizgi);
+  border-radius: var(--yaricap);
+}
+.tahmin-ad { font-size: 18px; }
+.tahmin-ad em { font-family: var(--baslik-yazisi); font-size: 20px; }
+.tahmin-ad span { color: var(--soluk); margin-left: 6px; }
+
+.ortak { margin-top: 6px; color: var(--soluk); }
+.ortak strong { color: var(--vurgu); font-weight: 600; }
+
+/* Ortak atanın soy çizgisi: Arthropoda > ... > ortak ata */
+.yol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 4px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+.yol li { color: var(--soluk); }
+.yol li:not(:last-child)::after { content: "›"; margin-left: 4px; color: var(--cizgi); }
+.yol li:last-child { color: var(--vurgu); font-weight: 600; }
+
+.tahmin.dogru { border-color: var(--dogru); }
+.tahmin.dogru .ortak strong { color: var(--dogru); }
+
+/* ---------- Tayin kartı (oyun bitince) ---------- */
+#sonuc {
+  margin-top: 40px;
+  padding: 28px 26px;
+  background: var(--yuzey);
+  border: 1px solid var(--vurgu);
+  border-radius: var(--yaricap);
+}
+#sonuc h2 {
+  margin: 0;
+  font-family: var(--baslik-yazisi);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.15;
+}
+#sonuc .tr-ad { margin: 4px 0 18px; color: var(--soluk); font-size: 18px; }
+#sonuc h3 { margin: 22px 0 8px; font-size: 16px; color: var(--vurgu); }
+#sonuc ul { margin: 0; padding-left: 20px; }
+#sonuc li { margin-bottom: 6px; }
+#sonuc button { margin-top: 24px; }
+
+/* ---------- Telefon ---------- */
+@media (max-width: 520px) {
+  #tahmin-formu { flex-direction: column; }
+}
+
+/* Hareketi azaltmak isteyenlere saygı */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
